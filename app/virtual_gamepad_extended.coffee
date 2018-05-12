@@ -12,7 +12,7 @@ winston = require('winston')
 winston.level = config.logLevel
 
 
-class virtual_gamepad
+class virtual_gamepad_extended
 
   constructor: () ->
 
@@ -33,6 +33,8 @@ class virtual_gamepad
         ioctl @fd, uinput.UI_SET_KEYBIT, uinput.BTN_TR
         ioctl @fd, uinput.UI_SET_KEYBIT, uinput.BTN_START
         ioctl @fd, uinput.UI_SET_KEYBIT, uinput.BTN_SELECT
+        ioctl @fd, uinput.UI_SET_KEYBIT, uinput.BTN_TL2
+        ioctl @fd, uinput.UI_SET_KEYBIT, uinput.BTN_TR2
         # Init directions
         ioctl @fd, uinput.UI_SET_EVBIT, uinput.EV_ABS
         ioctl @fd, uinput.UI_SET_ABSBIT, uinput.ABS_X
@@ -41,7 +43,7 @@ class virtual_gamepad
         uidev = new uinputStructs.uinput_user_dev
         uidev_buffer = uidev.ref()
         uidev_buffer.fill(0)
-        uidev.name = Array.from("Virtual gamepad")
+        uidev.name = Array.from("Virtual gamepad Ex")
         uidev.id.bustype = uinput.BUS_USB
         uidev.id.vendor = 0x3
         uidev.id.product = 0x3
@@ -113,4 +115,4 @@ class virtual_gamepad
         throw err
 
 
-module.exports = virtual_gamepad
+module.exports = virtual_gamepad_extended

@@ -11,17 +11,18 @@
         <script src="/js/virtual_gamepad_extended_client.js"></script>
         <link rel="stylesheet" type="text/css" href="css/gamepad_extended.css">
     </head>
-    <body>
+    <body style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on"
+onselectstart="return false;" onmousedown="return false;">
         <table class="ex_table">
                 <tr>
-                        <td colspan="2" class="input_1">L Trigger</td>
-                        <td colspan="2" class="input_2">L2 Trigger</td>
-                        <td colspan="2" class="input_2">R2 Trigger</td>
-                        <td colspan="2" class="input_1">R Trigger</td>
+                        <td colspan="2" class="g3 input_1" data-code="0x136">L Trigger</td>
+                        <td colspan="2" class="g3 input_2" data-code="0x138">L2 Trigger</td>
+                        <td colspan="2" class="g3 input_2" data-code="0x139">R2 Trigger</td>
+                        <td colspan="2" class="g3 input_1" data-code="0x137">R Trigger</td>
                 </tr>
                 <tr>
                         <td>&nbsp;</td>
-                        <td class="g1 input_4">Up</td>
+                        <td class="g1 input_4" data-code="up">Up</td>
                         <td>&nbsp;</td>
                         <td colspan="2" id="slotIndicator"></td>
                         <td>&nbsp;</td>
@@ -29,9 +30,9 @@
                         <td>&nbsp;</td>
                 </tr>
                 <tr>
-                        <td class="g1 input_4">Left</td>
+                        <td class="g1 input_4" data-code="left">Left</td>
                         <td>&nbsp;</td>
-                        <td class="g1 input_4">Right</td>
+                        <td class="g1 input_4" data-code="right">Right</td>
                         <td>Mode 1</td>
                         <td>Mode 1</td>
                         <td class="g2 input_3" data-code="0x134">Y</td>
@@ -40,10 +41,10 @@
                 </tr>
                 <tr>
                         <td>&nbsp;</td>
-                        <td class="g1 input_4">Down</td>
+                        <td class="g1 input_4" data-code="down">Down</td>
                         <td>&nbsp;</td>
-                        <td class="input_1">Start</td>
-                        <td class="input_1">Select</td>
+                        <td class="g3 input_1" data-code="0x13b">Start</td>
+                        <td class="g3 input_1" data-code="0x13a">Select</td>
                         <td>&nbsp;</td>
                         <td class="g2 input_3" data-code="0x131">B</td>
                         <td>&nbsp;</td>

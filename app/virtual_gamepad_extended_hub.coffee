@@ -3,12 +3,12 @@ Created by MIROOF on 04/03/2015
 Virtual gamepad hub class
 ###
 
-gamepad = require './virtual_gamepad'
+gamepad = require './virtual_gamepad_extended'
 config = require '../config.json'
 winston = require('winston')
 winston.level = config.logLevel
 
-class virtual_gamepad_hub
+class virtual_gamepad_hub_extended
 
   constructor: () ->
     @gamepads = []
@@ -49,4 +49,4 @@ class virtual_gamepad_hub
     if @gamepads[padId]
       @gamepads[padId].sendEvent event
 
-module.exports = virtual_gamepad_hub
+module.exports = virtual_gamepad_hub_extended
