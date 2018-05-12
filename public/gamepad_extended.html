@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Virtual gamepad</title>
+        <link rel="icon" type="image/png" href="/images/gamepad_icons/favicon_32.png" />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <link rel="manifest" href="/images/gamepad_icons/manifest.json">
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="/images/gamepad_icons/launcher-icon-4x.png">
+        <script src="/js/lib/jquery.js"></script>
+        <script src="/js/lib/socketio.js"></script>
+        <script src="/js/virtual_gamepad_extended_client.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/gamepad_extended.css">
+    </head>
+    <body>
+        <table class="ex_table">
+                <tr>
+                        <td colspan="2" class="input_1">L Trigger</td>
+                        <td colspan="2" class="input_2">L2 Trigger</td>
+                        <td colspan="2" class="input_2">R2 Trigger</td>
+                        <td colspan="2" class="input_1">R Trigger</td>
+                </tr>
+                <tr>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_4">Up</td>
+                        <td>&nbsp;</td>
+                        <td colspan="2" id="slotIndicator"></td>
+                        <td>&nbsp;</td>
+                        <td class="g2 input_3" data-code="0x133">X</td>
+                        <td>&nbsp;</td>
+                </tr>
+                <tr>
+                        <td class="g1 input_4">Left</td>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_4">Right</td>
+                        <td>Mode 1</td>
+                        <td>Mode 1</td>
+                        <td class="g2 input_3" data-code="0x134">Y</td>
+                        <td>&nbsp;</td>
+                        <td class="g2 input_3" data-code="0x130">A</td>
+                </tr>
+                <tr>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_4">Down</td>
+                        <td>&nbsp;</td>
+                        <td class="input_1">Start</td>
+                        <td class="input_1">Select</td>
+                        <td>&nbsp;</td>
+                        <td class="g2 input_3" data-code="0x131">B</td>
+                        <td>&nbsp;</td>
+                </tr>
+        </table>
+    </body>
+</html>

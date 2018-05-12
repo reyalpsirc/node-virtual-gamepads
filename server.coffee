@@ -12,6 +12,8 @@ config = require './config.json'
 winston = require('winston')
 winston.level = config.logLevel
 
+gamepad_extended_hub = require './app/virtual_gamepad_extended_hub'
+gp_ex_hub = new gamepad_extended_hub()
 gamepad_hub = require './app/virtual_gamepad_hub'
 gp_hub = new gamepad_hub()
 keyboard_hub = require './app/virtual_keyboard_hub'
@@ -49,8 +51,20 @@ io.on 'connection', (socket) ->
     else if socket.touchpadId != undefined
       winston.log 'info', 'Touchpad disconnected'
       tp_hub.disconnectTouchpad socket.touchpadId, () ->
+    else if socket.gamePadExId != undefined
+      winston.log 'info', 'Gamepad X disconnected'
+      gp_ex_hub.disconnectGamepad socket.gamePadExId, () ->
     else
       winston.log 'info', 'Unknown disconnect'
+
+  socket.on 'connectGamepadEx', () ->
+    gp_ex_hub.connectGamepad (gamePadExId) ->
+      if gamePadExId != -1
+        winston.log 'info', 'Gamepad X connected'
+        socket.gamePadExId = gamePadExId
+        socket.emit 'gamepadExConnected', {padId: gamePadExId}
+      else
+        winston.log 'info', 'Gamepad X connect failed'
 
   socket.on 'connectGamepad', () ->
     gp_hub.connectGamepad (gamePadId) ->
@@ -61,6 +75,11 @@ io.on 'connection', (socket) ->
       else
         winston.log 'info', 'Gamepad connect failed'
 
+  socket.on 'padExEvent', (data) ->
+    winston.log 'debug', 'Pad X event', data
+    if socket.gamePadExId != undefined and data
+      gp_ex_hub.sendEvent socket.gamePadExId, data
+      
   socket.on 'padEvent', (data) ->
     winston.log 'debug', 'Pad event', data
     if socket.gamePadId != undefined and data

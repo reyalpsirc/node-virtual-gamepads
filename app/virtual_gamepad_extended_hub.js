@@ -18,7 +18,7 @@
     constructor() {
       var i, j;
       this.gamepads = [];
-      for (i = j = 0; j <= 3; i = ++j) {
+      for (i = j = 0; j <= 7; i = ++j) {
         this.gamepads[i] = void 0;
       }
     }
@@ -27,7 +27,7 @@
       var freeSlot, padId;
       padId = 0;
       freeSlot = false;
-      while (!freeSlot && padId < 4) {
+      while (!freeSlot && padId < 8) {
         if (!this.gamepads[padId]) {
           freeSlot = true;
         } else {

@@ -1,0 +1,24 @@
+.ex_table {
+    width: 100%;
+    height: 100%;
+}
+.ex_table td {
+    width: 12.5%;
+    height: 20%;
+    text-align: center;
+}
+.input_1 {
+    background-color: rgb(82, 82, 82)
+}
+.input_2 {
+    background-color: rgb(139, 139, 139)
+}
+.input_3 {
+    background-color: rgb(75, 88, 160)
+}
+.input_4 {
+    background-color: rgb(160, 102, 75)
+}
+.input_5 {
+    background-color: rgb(75, 160, 125)
+}
