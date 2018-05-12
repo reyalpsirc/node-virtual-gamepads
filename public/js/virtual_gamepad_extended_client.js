@@ -37,30 +37,65 @@ var hapticCallback = function () {
 $( window ).load(function() {
     initSlotIndicator();
 
-    var invokeButton = function (code, enabled) {
+    $("#type_1").on("click", function() {
+        var btn = $(this)
+        if (btn.hasClass("one_active")) {
+            btn.removeClass("one_active").addClass("two_active").text("Mode 2")
+            $("#leftPad").show()
+        } else {
+            btn.removeClass("two_active").addClass("one_active").text("Mode 1")
+            $("#leftPad").hide()
+        }
+        hapticCallback();
+    });
+
+    $("#type_2").on("click", function() {
+        var btn = $(this)
+        if (btn.hasClass("one_active")) {
+            btn.removeClass("one_active").addClass("two_active").text("Mode 2")
+            $("#rightPad").show()
+        } else {
+            btn.removeClass("two_active").addClass("one_active").text("Mode 1")
+            $("#rightPad").hide()
+        }
+        hapticCallback();
+    });
+
+    var getCodes = function (extra) {
+        let data = {code1: 0x00, code2: 0x01}
+        if (extra === "leftPad") {
+            data = {code1: 0x10, code2: 0x11}
+        } else if (extra === "rightPad") {
+            data = {code1: 0x03, code2: 0x04}
+        }
+        return data
+    }
+
+    var invokeButton = function (code, enabled, extra) {
         if (!enabled && (code === "left" || code === "right" || code === "up" || code === "down")) {
             code = "none"
         }
+        let axisCodes = getCodes(extra)
         switch (code) {
             case "left":
-                socket.emit("padExEvent", { type: 0x03, code: 0x00, value: 0 });
-                socket.emit("padExEvent", { type: 0x03, code: 0x01, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 0 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 127 });
                 break;
             case "right":
-                socket.emit("padExEvent", { type: 0x03, code: 0x00, value: 255 });
-                socket.emit("padExEvent", { type: 0x03, code: 0x01, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 255 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 127 });
                 break;
             case "up":
-                socket.emit("padExEvent", { type: 0x03, code: 0x00, value: 127 });
-                socket.emit("padExEvent", { type: 0x03, code: 0x01, value: 0 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 0 });
                 break;
             case "down":
-                socket.emit("padExEvent", { type: 0x03, code: 0x00, value: 127 });
-                socket.emit("padExEvent", { type: 0x03, code: 0x01, value: 255 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 255 });
                 break;
             case "none":
-                socket.emit("padExEvent", { type: 0x03, code: 0x00, value: 127 });
-                socket.emit("padExEvent", { type: 0x03, code: 0x01, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 127 });
                 break;
             default:
                 socket.emit("padExEvent", { type: 0x01, code: code, value: enabled ? 1 : 0 });
@@ -78,13 +113,13 @@ $( window ).load(function() {
 
         $(".g1, .g2, .g3").on("touchstart", function() {
             var btn = $(this)
-            invokeButton($(this).data("code"), true)
+            invokeButton($(this).data("code"), true, $(this).data("extra"))
             hapticCallback();
         });
 
         $(".g1, .g2, .g3").on("touchend", function() {
             var btn = $(this)
-            invokeButton($(this).data("code"), false)
+            invokeButton($(this).data("code"), false, $(this).data("extra"))
             //hapticCallback();
         });
 

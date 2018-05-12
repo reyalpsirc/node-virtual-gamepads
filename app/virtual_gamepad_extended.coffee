@@ -39,6 +39,10 @@ class virtual_gamepad_extended
         ioctl @fd, uinput.UI_SET_EVBIT, uinput.EV_ABS
         ioctl @fd, uinput.UI_SET_ABSBIT, uinput.ABS_X
         ioctl @fd, uinput.UI_SET_ABSBIT, uinput.ABS_Y
+        ioctl @fd, uinput.UI_SET_ABSBIT, uinput.ABS_RX
+        ioctl @fd, uinput.UI_SET_ABSBIT, uinput.ABS_RY
+        ioctl @fd, uinput.UI_SET_ABSBIT, uinput.ABS_HAT0X
+        ioctl @fd, uinput.UI_SET_ABSBIT, uinput.ABS_HAT0Y
 
         uidev = new uinputStructs.uinput_user_dev
         uidev_buffer = uidev.ref()

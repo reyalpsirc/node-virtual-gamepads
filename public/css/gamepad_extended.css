@@ -1,10 +1,13 @@
 .ex_table {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
 .ex_table td {
     width: 12.5%;
-    height: 20%;
+    height: 25%;
     text-align: center;
 }
 .input_1 {
@@ -21,4 +24,27 @@
 }
 .input_5 {
     background-color: rgb(75, 160, 125)
+}
+.pad_table td {
+    width: 12.5%;
+    height: 25%;
+    text-align: center;
+}
+#leftPad {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width:37.5%;
+    height: 75%;
+    vertical-align: middle;
+    text-align: center;
+}
+#rightPad {
+    position: absolute;
+    top: 25%;
+    right: 0;
+    width:37.5%;
+    height: 75%;
+    vertical-align: middle;
+    text-align: center;
 }

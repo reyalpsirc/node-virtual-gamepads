@@ -8,6 +8,7 @@
         <link rel="icon" sizes="192x192" href="/images/gamepad_icons/launcher-icon-4x.png">
         <script src="/js/lib/jquery.js"></script>
         <script src="/js/lib/socketio.js"></script>
+        <script src="/js/virtualjoystick.js"></script>
         <script src="/js/virtual_gamepad_extended_client.js"></script>
         <link rel="stylesheet" type="text/css" href="css/gamepad_extended.css">
     </head>
@@ -33,8 +34,8 @@ onselectstart="return false;" onmousedown="return false;">
                         <td class="g1 input_4" data-code="left">Left</td>
                         <td>&nbsp;</td>
                         <td class="g1 input_4" data-code="right">Right</td>
-                        <td>Mode 1</td>
-                        <td>Mode 1</td>
+                        <td id="type_1" class="one_active">Mode 1</td>
+                        <td id="type_2" class="one_active">Mode 1</td>
                         <td class="g2 input_3" data-code="0x134">Y</td>
                         <td>&nbsp;</td>
                         <td class="g2 input_3" data-code="0x130">A</td>
@@ -47,6 +48,40 @@ onselectstart="return false;" onmousedown="return false;">
                         <td class="g3 input_1" data-code="0x13a">Select</td>
                         <td>&nbsp;</td>
                         <td class="g2 input_3" data-code="0x131">B</td>
+                        <td>&nbsp;</td>
+                </tr>
+        </table>
+        <table id="rightPad" class="pad_table" style="display: none">
+                <tr>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_5" data-code="up" data-extra"rightPad">Up</td>
+                        <td>&nbsp;</td>
+                </tr>
+                <tr>
+                        <td class="g1 input_5" data-code="left" data-extra"rightPad">Left</td>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_5" data-code="right" data-extra"rightPad">Right</td>
+                </tr>
+                <tr>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_5" data-code="down" data-extra"rightPad">Down</td>
+                        <td>&nbsp;</td>
+                </tr>
+        </table>
+        <table id="leftPad" class="pad_table" style="display: none">
+                <tr>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_5" data-code="up" data-extra"leftPad">Up</td>
+                        <td>&nbsp;</td>
+                </tr>
+                <tr>
+                        <td class="g1 input_5" data-code="left" data-extra"leftPad">Left</td>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_5" data-code="right" data-extra"leftPad">Right</td>
+                </tr>
+                <tr>
+                        <td>&nbsp;</td>
+                        <td class="g1 input_5" data-code="down" data-extra"leftPad">Down</td>
                         <td>&nbsp;</td>
                 </tr>
         </table>
