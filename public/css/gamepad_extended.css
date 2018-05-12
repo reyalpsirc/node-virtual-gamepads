@@ -23,28 +23,34 @@
     background-color: rgb(160, 102, 75)
 }
 .input_5 {
-    background-color: rgb(75, 160, 125)
+    background-color: rgb(75, 160, 125);
+    pointer-events: all;
 }
 .pad_table td {
-    width: 12.5%;
+    width: 25%;
     height: 25%;
     text-align: center;
+}
+.disable {
+    pointer-events: none;
 }
 #leftPad {
     position: absolute;
     top: 25%;
     left: 0;
-    width:37.5%;
+    width:50%;
     height: 75%;
     vertical-align: middle;
     text-align: center;
+    pointer-events: none;
 }
 #rightPad {
     position: absolute;
     top: 25%;
     right: 0;
-    width:37.5%;
+    width:50%;
     height: 75%;
     vertical-align: middle;
     text-align: center;
+    pointer-events: none;
 }

@@ -113,6 +113,8 @@ $( window ).load(function() {
 
         $(".g1, .g2, .g3").on("touchstart", function() {
             var btn = $(this)
+            console.log(btn);
+            
             invokeButton($(this).data("code"), true, $(this).data("extra"))
             hapticCallback();
         });
