@@ -70,6 +70,22 @@ Virtual gamepad class
             uidev.absmin[uinput.ABS_Y] = 0;
             uidev.absfuzz[uinput.ABS_Y] = 0;
             uidev.absflat[uinput.ABS_Y] = 15;
+            uidev.absmax[uinput.ABS_RX] = 255;
+            uidev.absmin[uinput.ABS_RX] = 0;
+            uidev.absfuzz[uinput.ABS_RX] = 0;
+            uidev.absflat[uinput.ABS_RX] = 15;
+            uidev.absmax[uinput.ABS_RY] = 255;
+            uidev.absmin[uinput.ABS_RY] = 0;
+            uidev.absfuzz[uinput.ABS_RY] = 0;
+            uidev.absflat[uinput.ABS_RY] = 15;
+            uidev.absmax[uinput.ABS_HAT0X] = 255;
+            uidev.absmin[uinput.ABS_HAT0X] = 0;
+            uidev.absfuzz[uinput.ABS_HAT0X] = 0;
+            uidev.absflat[uinput.ABS_HAT0X] = 15;
+            uidev.absmax[uinput.ABS_HAT0Y] = 255;
+            uidev.absmin[uinput.ABS_HAT0Y] = 0;
+            uidev.absfuzz[uinput.ABS_HAT0Y] = 0;
+            uidev.absflat[uinput.ABS_HAT0Y] = 15;
             return fs.write(_this.fd, uidev_buffer, 0, uidev_buffer.length, null, function(err) {
               if (err) {
                 winston.log('warn', "Error on init gamepad write:\n", err);
