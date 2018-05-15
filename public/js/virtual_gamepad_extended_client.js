@@ -62,11 +62,11 @@ $( window ).load(function() {
     });
 
     var getCodes = function (extra) {
-        let data = {code1: 0x00, code2: 0x01}
+        let data = {code1: 0x10, code2: 0x11, min: -1, max: 1}
         if (extra === "leftPad") {
-            data = {code1: 0x10, code2: 0x11}
+            data = { code1: 0x00, code2: 0x01, min: 0, max: 255}
         } else if (extra === "rightPad") {
-            data = {code1: 0x03, code2: 0x04}
+            data = { code1: 0x03, code2: 0x04, min: 0, max: 255}
         }
         return data
     }
@@ -76,26 +76,29 @@ $( window ).load(function() {
             code = "none"
         }
         let axisCodes = getCodes(extra)
+        let min = axisCodes.min
+        let max = axisCodes.max
+        let middle = min + (max - min) / 2
         switch (code) {
             case "left":
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 0 });
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: min});
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: middle });
                 break;
             case "right":
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 255 });
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: max });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: middle });
                 break;
             case "up":
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 127 });
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 0 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: middle });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: min });
                 break;
             case "down":
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 127 });
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 255 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: middle });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: max });
                 break;
             case "none":
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: 127 });
-                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: 127 });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code1, value: middle });
+                socket.emit("padExEvent", { type: 0x03, code: axisCodes.code2, value: middle });
                 break;
             default:
                 socket.emit("padExEvent", { type: 0x01, code: code, value: enabled ? 1 : 0 });
