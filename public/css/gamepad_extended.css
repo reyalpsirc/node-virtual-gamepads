@@ -1,3 +1,11 @@
+body {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    font-family: Verdana, Geneva, sans-serif;
+}
 .ex_table {
     position: absolute;
     top: 0;

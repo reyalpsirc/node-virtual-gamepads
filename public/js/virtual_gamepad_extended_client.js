@@ -37,6 +37,11 @@ var hapticCallback = function () {
 $( window ).load(function() {
     initSlotIndicator();
 
+    document.addEventListener('touchend', function (event) {
+        event.preventDefault();
+        $(event.target).trigger('click');
+    }, false);
+
     $("#type_1").on("click", function() {
         var btn = $(this)
         if (btn.hasClass("one_active")) {
